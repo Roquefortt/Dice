@@ -1,11 +1,13 @@
 void setup()
 {
 	size(300, 300);
-	background((int)(Math.random() * 50)+146,(int)(Math.random() *50)+146,(int)(Math.random() * 50)+146);
 	noLoop();
 }
 void draw()
 {
+	background((int)(Math.random() * 50)+146,(int)(Math.random() *50)+146,(int)(Math.random() * 50)+146);
+	int numDots = 0; 
+
 	Die dice = new Die(50, 50);
 	dice.show();
 
@@ -18,6 +20,7 @@ void draw()
 			ellipse(myX, myY, 5, 5);
 		}
 	}
+
 }
 
 void mousePressed()
@@ -28,6 +31,7 @@ class Die //models one single dice cube
 {
 	//variable declarations here
 	int myX, myY, num;
+	boolean one = true;
 
 	Die(int x, int y) //constructor
 	{
@@ -38,13 +42,16 @@ class Die //models one single dice cube
 	void roll()
 	{
 		//your code here
-/*		num = l;
-
-		if (num ==1 )
+		if ((int)Math.random() <= 1 )
 		{
-			num = (int)(Math.random()*7);
+			one = true;
 		}
-*/
+
+		else if ((int)Math.random() > 1 )
+		{
+			one = false;
+		}
+
 	}
 	void show()
 	{
@@ -58,5 +65,19 @@ class Die //models one single dice cube
 				rect(myX, myY, 50, 50);
 			}
 		}
+
+//fix
+		if (one == true)
+		{
+			fill(255,0,0);
+			ellipse(myX, myY, 5, 5);
+		}
+
+		else 
+		{
+			fill(255,0,0);
+			ellipse(myX-5, myY+5, 5, 5);
+		}
+
 	}
 }
