@@ -2,6 +2,7 @@ void setup()
 {
 	size(300, 300);
 	noLoop();
+	textAlign(CENTER);
 }
 void draw()
 {
@@ -10,6 +11,9 @@ void draw()
 
 	Die dice = new Die(50, 50);
 	dice.show();
+
+	numDots = numDots + (int)(Math.random()*16)+1;
+
 
 	//dots on die
 	for(int myY = 70; myY <= 250; myY = myY +55)
@@ -21,6 +25,9 @@ void draw()
 		}
 	}
 
+	text("Total: " + numDots, 150, 25);
+
+	System.out.println(numDots);
 }
 
 void mousePressed()
@@ -30,7 +37,8 @@ void mousePressed()
 class Die //models one single dice cube
 {
 	//variable declarations here
-	int myX, myY, num;
+	int myX, myY;	
+
 	boolean one = true;
 
 	Die(int x, int y) //constructor
@@ -71,6 +79,7 @@ class Die //models one single dice cube
 		{
 			fill(255,0,0);
 			ellipse(myX, myY, 5, 5);
+			numDots = 1;
 		}
 
 		else 
