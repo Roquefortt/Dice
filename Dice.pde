@@ -50,7 +50,7 @@ class Die //models one single dice cube
 	void roll()
 	{
 		//your code here
-		//redraw();
+		//make the dice roll differnt amount of dots
 
 	}
 	void show()
