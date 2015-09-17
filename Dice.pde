@@ -67,7 +67,7 @@ class Die //models one single dice cube
 				rect(myX, myY, 50, 50);
 			}
 		}
-
+//maybe inside the for loop add math.random
 		//dots on die
 		if (numDots == 1)
 		{
