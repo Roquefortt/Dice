@@ -1,164 +1,107 @@
 void setup()
 {
-	size(300, 300);
-	noLoop();
-	textAlign(CENTER);
+  size(300,300);
+  noLoop();
+  textAlign(CENTER);
 }
+
 void draw()
 {
-	background((int)(Math.random() * 50)+146,(int)(Math.random() *50)+146,(int)(Math.random() * 50)+146);
-	int total = 0; 
-
-	for(int myX = 45; myX <= 250; myX = myX + 55)
-	{
-
-		Die dice = new Die(myX, 50);
-		dice.show();
-
-		if (dice.numDots < 7)
-		{
-			total = total + dice.numDots; 
-		}
-		
-	}
-	
-	System.out.println(total);
-	text("Total: " + total, 150, 25);	
+   background((int)(Math.random() * 50)+146,(int)(Math.random() *50)+146,(int)(Math.random() * 50)+146);
+   int sum = 0;
+   
+ //y for loop causes issues
+   for (int y = 45; y <250; y = y +55)
+   {
+     for (int x = 45; x <250; x = x +55)
+     {
+       Die dice  = new Die(x,y);
+       dice.show();
+       dice.roll();
+       if(dice.value < 7)
+       {
+         sum = sum + dice.value;
+       }
+     }
+   }
+   System.out.println(sum);
+   text("Total: " + sum, 150, 30);
 }
 
 void mousePressed()
 {
-	redraw();
+  redraw();
 }
-class Die //models one single dice cube
+
+class Die
 {
-	//variable declarations here
-	int myX, myY;	
-	int numDots = 0;
-	int total = 0;
+  int value;
+  int myX, myY;
+  Die(int x, int y)
+  {
+    value = (int)(Math.random()*6)+1;
+    myX = x;
+    myY = y;
+  }
+  
+//dots
+void roll()
+  {
+     noStroke();
+     fill(255,0,0);
+     
+     if (value == 1)
+     {
+          ellipse(myX+25, myY+25, 5, 5);       
+     }
+     
+     if (value == 2)
+     {
+          ellipse(myX+19, myY+25, 5, 5);
+          ellipse(myX+31, myY+25, 5, 5);       
+     }
 
-	//boolean one = true;
+     if (value == 3)
+     {
+          ellipse(myX+25, myY+15, 5, 5);
+          ellipse(myX+25, myY+25, 5, 5);          
+          ellipse(myX+25, myY+35, 5, 5);       
+     }
 
-	Die(int x, int y) //constructor
-	{
-		//variable initializations here
-		myX = x;
-		myY = y;
-		numDots = (int)(Math.random()*6)+1;
-	}
+     if (value == 4)
+     {
+          ellipse(myX+19, myY+20, 5, 5);
+          ellipse(myX+31, myY+20, 5, 5);
+          ellipse(myX+19, myY+30, 5, 5);
+          ellipse(myX+31, myY+30, 5, 5);       
+     }
 
-	void roll()
-	{
-		//your code here
-		//make the dice roll differnt amount of dots
+     if (value == 5)
+     {
+          fill(255,0,0);
+          ellipse(myX+15, myY+15, 5, 5);
+          ellipse(myX+35, myY+15, 5, 5);
+          ellipse(myX+15, myY+37, 5, 5);
+          ellipse(myX+35, myY+37, 5, 5);
+          ellipse(myX+25, myY+25, 5, 5);       
+     }
 
-	}
-	void show()
-	{
-		//your code here
+     if (value == 6)
+     {
+          ellipse(myX+31, myY+15, 5, 5);
+          ellipse(myX+19, myY+15, 5, 5);
+          ellipse(myX+31, myY+25, 5, 5);
+          ellipse(myX+19, myY+25, 5, 5);
+          ellipse(myX+31, myY+35, 5, 5);
+          ellipse(myX+19, myY+35, 5, 5);        
+     }     
+  }
 
-		//dice
-		for(int myY = 45; myY <= 250; myY = myY +55)
-		{
-			for(int myX = 45; myX <= 250; myX = myX + 55)
-			{
-				stroke((int)(Math.random() * 100)+156,(int)(Math.random() *100)+156,(int)(Math.random() * 100)+156);
-				fill((int)(Math.random() * 100)+156,(int)(Math.random() *100)+156,(int)(Math.random() * 100)+156);
-				rect(myX, myY, 50, 50);
-			}
-		}
-//maybe inside the for loop add math.random
-		//dots on die
-		if (numDots == 1)
-		{
-			for(int myY = 70; myY <= 250; myY = myY +55)
-			{
-				for(int myX = 70; myX <= 250; myX = myX + 55)
-				{
-					fill(255,0,0);
-					ellipse(myX, myY, 5, 5);
-				}
-			}			
-		}
-
-		else if (numDots == 2)
-		{
-
-			for(int myY = 70; myY <= 250; myY = myY +55)
-			{
-				for(int myX = 70; myX <= 250; myX = myX + 55)
-				{
-					fill(255,0,0);
-					ellipse(myX-6, myY, 5, 5);
-					ellipse(myX+6, myY, 5, 5);
-				}
-			}			
-		}
-
-		else if (numDots == 3)
-		{
-
-			for(int myY = 70; myY <= 250; myY = myY +55)
-			{
-				for(int myX = 70; myX <= 250; myX = myX + 55)
-				{
-					fill(255,0,0);
-					ellipse(myX, myY-10, 5, 5);
-					ellipse(myX, myY, 5, 5);					
-					ellipse(myX, myY+10, 5, 5);
-				}
-			}			
-		}	
-
-		else if (numDots == 4)
-		{
-
-			for(int myY = 70; myY <= 250; myY = myY +55)
-			{
-				for(int myX = 70; myX <= 250; myX = myX + 55)
-				{
-					fill(255,0,0);
-					ellipse(myX-6, myY-5, 5, 5);
-					ellipse(myX+6, myY-5, 5, 5);
-					ellipse(myX-6, myY+5, 5, 5);
-					ellipse(myX+6, myY+5, 5, 5);
-				}
-			}			
-		}	
-
-		else if (numDots == 5)
-		{
-
-			for(int myY = 70; myY <= 250; myY = myY +55)
-			{
-				for(int myX = 70; myX <= 250; myX = myX + 55)
-				{
-					fill(255,0,0);
-					ellipse(myX-10, myY-10, 5, 5);
-					ellipse(myX+10, myY-10, 5, 5);
-					ellipse(myX-10, myY+12, 5, 5);
-					ellipse(myX+10, myY+12, 5, 5);
-					ellipse(myX, myY, 5, 5);
-				}
-			}			
-		}	
-
-		else if (numDots == 6)
-		{
-
-			for(int myY = 70; myY <= 250; myY = myY +55)
-			{
-				for(int myX = 70; myX <= 250; myX = myX + 55)
-				{
-					fill(255,0,0);
-					ellipse(myX-6, myY-10, 5, 5);
-					ellipse(myX+6, myY-10, 5, 5);
-					ellipse(myX-6, myY, 5, 5);
-					ellipse(myX+6, myY, 5, 5);
-					ellipse(myX-6, myY+10, 5, 5);
-					ellipse(myX+6, myY+10, 5, 5);					
-				}
-			}		
-		}	
-	}
+//dice
+  void show()
+  {
+     stroke((int)(Math.random() * 100)+156,(int)(Math.random() *100)+156,(int)(Math.random() * 100)+156);
+     fill((int)(Math.random() * 100)+156,(int)(Math.random() *100)+156,(int)(Math.random() * 100)+156);
+     rect(myX, myY, 50, 50);
+  }
 }
