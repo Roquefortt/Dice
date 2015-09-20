@@ -24,7 +24,6 @@ void draw()
        }
      }
    }
-   System.out.println(sum);
    text("Total: " + sum, 150, 30);
 }
 
